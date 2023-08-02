@@ -31,7 +31,6 @@ export default function MainNav() {
     e.preventDefault();
     setIsExpanded(false);
     setSearchHistory(await addToHistory(`title=true&q=${searchField}`));
-    console.log(searchHistory);
     router.push(`/artwork?title=true&q=${searchField}`);
   }
 

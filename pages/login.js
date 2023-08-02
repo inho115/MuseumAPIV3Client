@@ -25,11 +25,9 @@ export default function Login(props) {
     e.preventDefault();
     try {
       await authenticateUser(user, password);
-      console.log("passed authentication");
       await updateAtoms();
       router.push("/favourites");
     } catch (err) {
-      console.log(err);
       setWarning(err.message);
     }
   }

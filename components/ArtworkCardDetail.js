@@ -17,8 +17,6 @@ export default function ArtworkCardDetail({ objectID }) {
   }, [favouritesList]);
 
   async function favouritesClicked() {
-    console.log(showAdded);
-    console.log(objectID);
     if (showAdded) {
       setFavouritesList(await removeFromFavourites(objectID));
       setShowAdded(false);

@@ -28,7 +28,6 @@ export default function History() {
   }
 
   if (parsedHistory.length === 0) {
-    console.log(parsedHistory);
     return (
       <Card>
         <Card.Body>
