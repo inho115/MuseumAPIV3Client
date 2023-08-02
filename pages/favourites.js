@@ -5,14 +5,15 @@ import { useEffect } from "react";
 import ArtworkCard from "@/components/ArtworkCard";
 
 export default function Favourites() {
-  const [favouriteList, setFavouritesList] = useAtom(favouritesAtom);
+  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+  if (!favouritesList) return null;
 
-  if (favouriteList != null && favouriteList != undefined) {
+  if (favouritesList != null && favouritesList != undefined) {
     return (
       <>
-        {favouriteList.length > 0 ? (
+        {favouritesList.length > 0 ? (
           <Row>
-            {favouriteList.map((artwork) => {
+            {favouritesList.map((artwork) => {
               return (
                 <Col lg={3} key={artwork}>
                   <ArtworkCard objectID={artwork} />
@@ -23,7 +24,7 @@ export default function Favourites() {
         ) : (
           ""
         )}
-        {favouriteList.length == 0 ? (
+        {favouritesList.length == 0 ? (
           <Card>
             <Card.Body>
               <Card.Text>
