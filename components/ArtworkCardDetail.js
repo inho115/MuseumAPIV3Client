@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { favouritesAtom } from "@/store";
 import { useState } from "react";
 import { addToFavourites, removeFromFavourites } from "@/lib/userData";
+import { useEffect } from "react";
 
 export default function ArtworkCardDetail({ objectID }) {
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
@@ -16,6 +17,8 @@ export default function ArtworkCardDetail({ objectID }) {
   }, [favouritesList]);
 
   async function favouritesClicked() {
+    console.log(showAdded);
+    console.log(objectID);
     if (showAdded) {
       setFavouritesList(await removeFromFavourites(objectID));
       setShowAdded(false);

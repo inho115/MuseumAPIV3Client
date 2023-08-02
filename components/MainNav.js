@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { searchHistoryAtom } from "@/store";
 import { useAtom } from "jotai";
+import { addToHistory } from "@/lib/userData";
 
 export default function MainNav() {
   const router = useRouter();
@@ -18,10 +19,10 @@ export default function MainNav() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     setIsExpanded(false);
-    setSearchHistory((current) => [...current, `title=true&q=${searchField}`]);
+    setSearchHistory(await addToHistory(`title=true&q=${searchField}`));
     console.log(searchHistory);
     router.push(`/artwork?title=true&q=${searchField}`);
   }

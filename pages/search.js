@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { searchHistoryAtom } from "@/store";
 import { useAtom } from "jotai";
+import { addToHistory } from "@/lib/userData";
 
 export default function AdvancedSearch() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function AdvancedSearch() {
     },
   });
 
-  function submitForm(data) {
+  async function submitForm(data) {
     let queryString = "";
     queryString = queryString.concat(`${data.searchBy}=true`);
     queryString = queryString.concat(`&geoLocation=${data.geoLocation}`);
@@ -27,7 +28,7 @@ export default function AdvancedSearch() {
     queryString = queryString.concat(`&isOnView=${data.isOnView}`);
     queryString = queryString.concat(`&isHighlight=${data.isHighlight}`);
     queryString = queryString.concat(`&q=${data.q}`);
-    setSearchHistory((current) => [...current, queryString]);
+    setSearchHistory(await addToHistory(queryString));
     router.push(`/artwork?${queryString}`);
   }
 
